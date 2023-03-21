@@ -1,0 +1,22 @@
+{
+  "name": "blogsapllication",
+  "version": "1.0.0",
+  "description": "This blog app reads and writes data to a data file using HTTP POST requests and data are displayed in response to HTTP GET requests.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Himanshu-Chauhan1/Blogs-SP18.git"
+  },
+  "keywords": [
+    "Nodejs"
+  ],
+  "author": "Himanshu Chauhan, Ankit sathiya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Himanshu-Chauhan1/Blogs-SP18/issues"
+  },
+  "homepage": "https://github.com/Himanshu-Chauhan1/Blogs-SP18#readme"
+}
