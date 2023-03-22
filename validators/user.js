@@ -36,68 +36,34 @@ const isValidEmail = (email) => {
     return /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email);
 };
 
-//========================================CreateUser==========================================================//
+//========================================LoginUser==========================================================//
 
-const createUser = async function (req, res, next) {
+let userLogin = async (req, res, next) => {
     try {
-        const data = req.body
-
-        const { name, phone, email, password, userRole } = req.body
+        const data = req.body;
+        let { email, password } = data
 
         if (!isValidRequestBody(data)) {
             return res.status(422).send({ status: 1002, message: "Please Provide Details" })
         }
-
-        if (!isValid(name)) {
-            return res.status(422).send({ status: 1002, message: "Name is required" })
-        }
-
-        if (!(phone)) {
-            return res.status(422).send({ status: 1002, message: "Phone No. is required" })
-        }
-
-        if (!isValidPhone(phone)) {
-            return res.status(422).send({ status: 1003, message: "plz enter a valid Phone no" })
-        }
-
-        const isRegisteredphone = await User.findOne({ phone: phone })
-
-        if (isRegisteredphone) {
-            return res.status(422).send({ status: 1008, message: "phoneNo. number already registered" })
-        }
-
         if (!isValid(email)) {
-            return res.status(400).send({ status: 1002, message: "Email is required" })
+            return res.status(422).send({ status: 1002, message: "Email is required" })
         }
 
         if (!isValidEmail(email)) {
-            return res.status(400).send({ status: 1003, message: "plz enter a valid Email" })
-        }
-
-        const isRegisteredEmail = await User.findOne({ email: email })
-
-        if (isRegisteredEmail) {
-            return res.status(422).send({ status: 1008, message: "email id already registered" })
+            return res.status(422).send({ status: 1003, message: "Email should be a valid email address" })
         }
 
         if (!isValid(password)) {
-            return res.status(422).send({ status: 1002, message: "Password is required" })
+            return res.status(422).send({ status: 1002, message: "password is required" })
         }
-
-        if (password.length < 8) {
-            return res.status(422).send({ status: 1003, message: "Your password must be at least 8 characters" })
-        }
-        if (password.length > 15) {
-            return res.status(422).send({ status: 1003, message: "Password cannot be more than 15 characters" })
-        }
-
-        data.userRole = "user".toLowerCase()
 
         next()
 
     } catch (error) {
+        console.log(error.message);
         return res.status(422).send({ status: 1001, msg: "Something went wrong Please check back again" })
     }
 }
 
-export { createUser }
+export { userLogin }
