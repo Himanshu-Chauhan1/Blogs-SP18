@@ -22,7 +22,7 @@ let login = async (req, res) => {
         if (!checkPassword) return res.status(422).send({ status: 1003, msg: " Invalid password credentials" })
 
         const token = await signAccessToken(user1._id.toString(), user1.userRole, user1.email);
-        console.log("hello-2")
+        console.log("hello-3")
 
         const userData = {
             token: token,
